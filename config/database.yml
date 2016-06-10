@@ -1,0 +1,26 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: st_meetings_development
+
+test:
+  <<: *default
+  database: st_meetings_test
+
+staging:
+  <<: *default
+  database: st_meetings_staging
+  username: st_meetings_writable
+  password: iejglske4t0dgq
+  host: dev-db-main-master-001.dev.st_meeting.jp
+  port: 5432
+
+production:
+  <<: *default
+  database: st_meetings_production
+  username: st_meetings
+  password: <%= ENV['ST_MEETING_DATABASE_PASSWORD'] %>
